@@ -1,0 +1,102 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0"
+  title: "factorial_"
+host: "DESKTOP-55ISNPV:4444"
+basePath: "/rad/Practice.webService.provider.restService:factorial_"
+schemes:
+- "http"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /factorial:
+    post:
+      operationId: "factorial_POST_1"
+      parameters:
+      - in: "body"
+        name: "factorialRq"
+        required: true
+        schema:
+          $ref: "#/definitions/factorialRq"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/factorial_POST_response"
+        "401":
+          description: "Access Denied"
+definitions:
+  error:
+    required:
+    - "errorCode"
+    - "errorDescription"
+    - "errorSystem"
+    properties:
+      errorCode:
+        type: "string"
+      errorSystem:
+        type: "string"
+      errorDescription:
+        type: "string"
+  factorial_POST_response:
+    required:
+    - "factorialRs"
+    properties:
+      factorialRs:
+        $ref: "#/definitions/factorialRs"
+  factorialRs:
+    required:
+    - "body"
+    - "header"
+    properties:
+      header:
+        $ref: "#/definitions/header_1"
+      body:
+        $ref: "#/definitions/body_1"
+  body_1:
+    required:
+    - "result"
+    properties:
+      result:
+        type: "string"
+      error:
+        $ref: "#/definitions/error"
+  factorialRq:
+    required:
+    - "body"
+    - "header"
+    properties:
+      header:
+        $ref: "#/definitions/header"
+      body:
+        $ref: "#/definitions/body"
+  body:
+    required:
+    - "number"
+    properties:
+      number:
+        type: "string"
+  header_1:
+    required:
+    - "integrationId"
+    - "messageId"
+    - "serviceId"
+    properties:
+      messageId:
+        type: "string"
+      serviceId:
+        type: "string"
+      integrationId:
+        type: "string"
+  header:
+    required:
+    - "messageId"
+    - "serviceId"
+    properties:
+      messageId:
+        type: "string"
+      serviceId:
+        type: "string"
